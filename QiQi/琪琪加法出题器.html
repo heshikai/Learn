@@ -1,0 +1,142 @@
+<script>
+
+var ret = [];
+
+function gen_plus_exam()
+{
+    var first;
+    var second;
+    var i;
+    for(i = 0 ; i < 10 ;i++){
+        first = gen_no();
+        second = gen_no();
+        ret[i] = first + second;
+        document.getElementById(i.toString()).innerHTML = first + " + " + second + " = ";
+        document.getElementById("ret" +　i.toString()).value = "";
+        document.getElementById("ret" +　i.toString()).setAttribute('class','')
+        document.getElementById("score").innerHTML = "";
+    }
+}
+
+function cal_score()
+{
+    var i;
+    var score = 0;
+    
+    for(i = 0 ; i < 10 ;i++){
+        var ret_input = document.getElementById("ret" + i.toString());
+        if( ret[i] != parseInt(ret_input.value) ){
+            ret_input.setAttribute('class','error')
+        }else{
+            score += 10;
+            ret_input.setAttribute('class','')
+        }
+    } 
+    document.getElementById("score").innerHTML = score
+}
+
+function gen_no()
+{
+    var ret = 10;
+    while(ret == 10 ){
+        ret = Math.ceil(Math.random()*10)
+    }
+    return ret;
+}
+</script>
+<style>
+table{
+    font-size: 27px; /* 字体大小 */
+}
+input{
+    font-size: 20px; /* 字体大小 */
+}
+input.error{
+    color:white;
+    background: red;
+}
+button { /* 按钮美化 */
+	width: 270px; /* 宽度 */
+	height: 25px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */
+}
+button:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #5599FF;
+}
+span.score{
+    border-bottom:6pt double #ff0000;
+    font-weight:bold;
+    font-style: italic;
+    font-size:36;
+    color:#ff0000;
+}
+input[type="number"]{width:66px;}
+</style>
+<body onload="gen_plus_exam()">
+
+<button type="button" onclick="gen_plus_exam()">重新出题</button>
+<br/><br/><br/><br/>
+<table>
+<tr>    
+    <td id = "0">=</td>
+    <td><input id="ret0" type="number" class="error"/></td>
+    <td>
+        <pre>   </pre>
+    </td>
+    <td id = "1">=</td>
+    <td><input id="ret1" type="number" class="error"/></td>
+</tr>
+
+<tr>    
+    <td id = "2">=</td>
+    <td><input id="ret2" type="number" class="error"/></td>
+    <td>
+        <pre>   </pre>
+    </td>
+    <td id = "3">=</td>
+    <td><input id="ret3" type="number" class="error"/></td>
+</tr>
+
+<tr>    
+    <td id = "4">=</td>
+    <td><input id="ret4" type="number" class="error"/></td>
+    <td>
+        <pre>   </pre>
+    </td>
+    <td id = "5">=</td>
+    <td><input id="ret5" type="number" class="error"/></td>
+</tr>
+
+<tr>    
+    <td id = "6">=</td>
+    <td><input id="ret6" type="number" class="error"/></td>
+    <td>
+        <pre>   </pre>
+    </td>
+    <td id = "7">=</td>
+    <td><input id="ret7" type="number" class="error"/></td>
+</tr>
+
+<tr>    
+    <td id = "8">=</td>
+    <td><input id="ret8" type="number" class="error"/></td>
+    <td>
+        <pre>   </pre>
+    </td>
+    <td id = "9">=</td>
+    <td><input id="ret9" type="number" class="error"/></td>
+</tr>
+
+<table>
+<br/>
+<pre>                    <span class= "score" id = "score"></span></pre>
+<br/>
+<button type="button" onclick="cal_score()">检查算分</button>
+</body>
